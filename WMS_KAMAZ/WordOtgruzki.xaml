@@ -1,0 +1,45 @@
+﻿<Window x:Class="WMS_KAMAZ.WordOtgruzki"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Создание накладной" Height="342" Width="608" Loaded="Window_Loaded" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Button Content="Создать" Height="29" HorizontalAlignment="Left" Margin="356,255,0,0" Name="buttonCreate" VerticalAlignment="Top" Width="86" Click="buttonCreate_Click" />
+        
+        <ListBox Height="256" HorizontalAlignment="Left" Margin="0,47,0,0" Name="listBox1" VerticalAlignment="Top" Width="223" 
+            ItemsSource="{Binding}"
+                  SelectedValuePath="ID_персонала"
+                  SelectionChanged="listBox1_SelectionChanged" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding  StringFormat="{}{0}, {1} {2} {3}">
+                                 <Binding Path="ID_персонала"/>
+                                 <Binding Path="Фамилия"/>
+                                <Binding Path="Имя"/>
+                                <Binding Path="Отчество"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+
+        </ListBox>
+        
+        <Label Content="Выберете ответственное лицо:" Height="28" HorizontalAlignment="Left" Margin="20,12,0,0" Name="label1" VerticalAlignment="Top" />
+        <Label Content="Номер накладной:" Height="28" HorizontalAlignment="Left" Margin="231,17,0,0" Name="label2" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="369,17,0,0" Name="textBoxNomNakl" VerticalAlignment="Top" Width="171" IsReadOnly="True" />
+        <Label Content="Дата оформления:" Height="28" HorizontalAlignment="Left" Margin="231,56,0,0" Name="label3" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="369,56,0,0" Name="textBoxDataNakl" VerticalAlignment="Top" Width="171" IsReadOnly="True" />
+        <Label Content="Сохранить  файл в:" Height="28" HorizontalAlignment="Left" Margin="231,201,0,0" Name="label4" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="369,206,0,0" Name="textBoxSavePath" VerticalAlignment="Top" Width="171" Text="C:\" />
+        <Button Content="..." Height="23" HorizontalAlignment="Left" Margin="551,206,0,0" Name="buttonSavePath" VerticalAlignment="Top" Width="25" Click="buttonSavePath_Click" />
+        <Label Content="Кол-во наименований:" Height="28" HorizontalAlignment="Left" Margin="231,129,0,0" Name="label5" VerticalAlignment="Top" />
+        <Label Content="Итоговая сумма:" Height="28" HorizontalAlignment="Left" Margin="231,163,0,0" Name="label6" VerticalAlignment="Top" />
+        <Label Content="Склад получатель:" Height="28" HorizontalAlignment="Left" Margin="231,90,0,0" Name="label7" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="369,95,0,0" Name="textBoxSkladPoluch" VerticalAlignment="Top" Width="171" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="369,131,0,0" Name="textBoxKolVoNaim" VerticalAlignment="Top" Width="171" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="369,165,0,0" Name="textBoxItogovayaSumma" VerticalAlignment="Top" Width="171" />
+    </Grid>
+</Window>

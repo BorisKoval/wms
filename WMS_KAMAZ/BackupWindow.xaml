@@ -1,0 +1,20 @@
+﻿<Window x:Class="WMS_KAMAZ.BackupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Резервное копирование" Height="400" Width="500" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded" Icon="/WMS_KAMAZ;component/Images/Backup.ico">
+    <Grid>
+        <RadioButton Content="Экспорт базы данных в файл" Height="16" HorizontalAlignment="Left" Margin="36,25,0,0" Name="radioButton1" VerticalAlignment="Top" Checked="radioButton1_Checked" />
+        <RadioButton Content="Импорт базы данных из файла" Height="16" HorizontalAlignment="Left" Margin="36,167,0,0" Name="radioButton2" VerticalAlignment="Top" Checked="radioButton2_Checked" />
+        <Button Content="Экспортировать" Height="30" HorizontalAlignment="Left" Margin="179,125,0,0" Name="buttonExport" VerticalAlignment="Top" Width="105" Click="buttonExport_Click" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="134,87,0,0" Name="textBoxExportPath" VerticalAlignment="Top" Width="253" />
+        <Button Content="Импортировать" Height="30" HorizontalAlignment="Left" Margin="174,294,0,0" Name="buttonImport" VerticalAlignment="Top" Width="105" Click="buttonImport_Click" />
+        <Label Content="Путь до файла:" Height="28" HorizontalAlignment="Left" Margin="39,83,0,0" Name="label2" VerticalAlignment="Top" />
+        <Button Content="..." Height="23" HorizontalAlignment="Left" Margin="393,88,0,0" Name="buttonExportPath" VerticalAlignment="Top" Width="34" Click="buttonExportPath_Click" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="134,247,0,0" Name="textBoxImportPath" VerticalAlignment="Top" Width="276" />
+        <Label Content="Строка подключения к БД:" Height="28" HorizontalAlignment="Left" Margin="36,201,0,0" Name="label3" VerticalAlignment="Top" />
+        <Label Content="Путь до файла:" Height="28" HorizontalAlignment="Left" Margin="36,243,0,0" Name="label4" VerticalAlignment="Top" />
+        <Button Content="..." Height="23" HorizontalAlignment="Left" Margin="416,247,0,0" Name="buttonImportPath" VerticalAlignment="Top" Width="34" Click="buttonImportPath_Click" />
+        <TextBox Height="23" Margin="197,203,68,0" Name="textBoxDBConnStr" VerticalAlignment="Top" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="45,51,0,0" Name="textBlock1" Text="URL/IP:" VerticalAlignment="Top" />
+    </Grid>
+</Window>

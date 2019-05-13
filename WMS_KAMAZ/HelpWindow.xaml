@@ -1,0 +1,8 @@
+﻿<Window x:Class="WMS_KAMAZ.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Помощь" Height="326" Width="465">
+    <Grid>
+        <Label Content="Html help .chm" Height="28" HorizontalAlignment="Left" Margin="148,32,0,0" Name="label1" VerticalAlignment="Top" />
+    </Grid>
+</Window>

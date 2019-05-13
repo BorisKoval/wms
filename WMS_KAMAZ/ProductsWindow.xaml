@@ -1,0 +1,142 @@
+﻿<Window x:Class="WMS_KAMAZ.ProductsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       Title="Номенклатура продукции" Height="500" Width="700" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded" Icon="/WMS_KAMAZ;component/Images/gear.png">
+        <Grid>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="1.7*" />
+        </Grid.ColumnDefinitions>
+        
+        <GridSplitter Grid.Column="0" Grid.Row="0" Background="LightBlue" Width="4" HorizontalAlignment="Right" IsEnabled="True" />
+        
+        <ListBox Margin="0,55,3,0" Name="listBox1"  Grid.Column="0" Grid.Row="0"
+                 ItemsSource="{Binding Path=тбноменкл_продукции}" SelectedValuePath="Код_продукции"
+                  SelectionChanged="listBox1_SelectionChanged" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding  StringFormat="{}{0}, {1}">
+                                 <Binding Path="Код_продукции"/>
+                                 <Binding Path="Наименование"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            
+        </ListBox>
+
+        <ToolBar Height="32" Name="toolBar1" VerticalAlignment="Top" Margin="0,0,3,0" Grid.Column="0" Grid.Row="0">
+            <Button Width="25" Height="25" Name="UndoButton" Click="Undo_Click" ToolTip="Отменить">
+                <Image Source="/WMS_KAMAZ;component/Images/Visualpharm-Must-Have-Undo.ico" Stretch="Fill" >
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Style.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value="0.4" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+
+            <Button Width="25" Height="25" Name="NewButton" Click="New_Click" ToolTip="Создать">
+                <Image Source="/WMS_KAMAZ;component/Images/new-folder-icon-44454.png"  Stretch="Fill" >
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Style.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value="0.4" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+            <Button Width="25" Height="25" Name="EditButton" Click="Edit_Click" ToolTip="Изменить">
+                <Image Source="/WMS_KAMAZ;component/Images/edit.png"   Stretch="Fill" >
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Style.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value="0.4" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+
+            <Button Width="25" Height="25" Name="SaveButton" Click="Save_Click" ToolTip="Сохранить">
+                <Image Source="/WMS_KAMAZ;component/Images/save.png" Stretch="Fill" >
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Style.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value="0.4" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+
+            <Button Width="25" Height="25" Name="DeleteButton" Click="Delete_Click" ToolTip="Удалить">
+                <Image Source="/WMS_KAMAZ;component/Images/DeleteRed.png" Stretch="Fill" >
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Style.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value="0.4" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+        </ToolBar>
+
+        <Button Content="Добавить" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="242,405,0,0" Name="buttonAddToCurrentProd" VerticalAlignment="Top" Width="75" Visibility="Hidden" Click="buttonAddToCurrentProd_Click" />
+        <Label Content="Добавить новую продукцию на склад:" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="137,377,0,0" Name="labelDobprod" VerticalAlignment="Top" Visibility="Hidden" />
+        <Label Content="Количество" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="80,406,0,0" Name="labelKolVo" VerticalAlignment="Top" Visibility="Hidden" />
+        <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="174,406,0,0" Name="textBoxKolVo" VerticalAlignment="Top" Width="42" Text="1" Visibility="Hidden" />
+        <Label Content="Продукция:" Height="28" HorizontalAlignment="Left" Margin="51,27,0,0" Name="label1" VerticalAlignment="Top" />
+        <Label Content="Код поставщика" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="57,12,0,0" Name="label2" VerticalAlignment="Top" />
+        <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="199,89,0,0" Name="textBox1" VerticalAlignment="Top" Width="120" />
+        
+        <ComboBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="199,12,0,0" Name="comboBox1" VerticalAlignment="Top" Width="120" SelectionChanged="comboBox1_SelectionChanged"
+                  ItemsSource="{Binding Path=тбпоставщик_продукции}"
+                  DisplayMemberPath="Наименование"
+
+                  SelectedValuePath="Код_поставщика"    
+                  />
+        
+        <ComboBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="199,49,0,0" Name="comboBox2" VerticalAlignment="Top" Width="120" 
+                  ItemsSource="{Binding Path=тбтара}"
+                  DisplayMemberPath="Наименование"
+
+                  SelectedValuePath="Код_тары" 
+                  SelectionChanged="comboBox2_SelectionChanged" />
+        
+        <Label Content="Код тары" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="57,49,0,0" Name="label3" VerticalAlignment="Top" />
+        <Label Content="Наименование" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="57,87,0,0" Name="label4" VerticalAlignment="Top" />
+        <Label Content="Стоимость единицы" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="57,121,0,0" Name="label5" VerticalAlignment="Top" />
+        <Label Content="Единицы измерения" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="57,155,0,0" Name="label6" VerticalAlignment="Top" />
+        <Label Content="Масса брутто" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="57,189,0,0" Name="label7" VerticalAlignment="Top" />
+        <Label Content="Длина" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="57,223,0,0" Name="label8" VerticalAlignment="Top" />
+        <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="199,123,0,0" Name="textBox2" VerticalAlignment="Top" Width="120" />
+        <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="199,157,0,0" Name="textBox3" VerticalAlignment="Top" Width="120" />
+        <Label Content="Ширина" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="57,257,0,0" Name="label9" VerticalAlignment="Top" />
+        <Label Content="Высота" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="57,291,0,0" Name="label10" VerticalAlignment="Top" />
+        <Label Content="Материал" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="57,325,0,0" Name="label11" VerticalAlignment="Top" />
+        <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="199,189,0,0" Name="textBox4" VerticalAlignment="Top" Width="120" />
+        <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="199,223,0,0" Name="textBox5" VerticalAlignment="Top" Width="120" />
+        <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="199,257,0,0" Name="textBox6" VerticalAlignment="Top" Width="120" />
+        <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="199,291,0,0" Name="textBox7" VerticalAlignment="Top" Width="120" />
+        <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="197,325,0,0" Name="textBox8" VerticalAlignment="Top" Width="120" />
+    </Grid>
+</Window>
